@@ -9,9 +9,10 @@
 char buffer[BUFSIZE];
 char *bufp;
 
-// We're implementing some functions in <string.h> to reduce program size
-void readfile (FILE *fp, char *c);
+// We're implementing some functions that are in <string.h>
+// to reduce program size
 int findLoopEnd (char *prog);
+void readfile (FILE *fp, char *c);
 void copy (char *dst, char *src, int len);
 void substring (char *dst, char *src, int beg, int end);
 void parse (char *prog);
