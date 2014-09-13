@@ -1,4 +1,6 @@
 
+// bf.c
+
 #include <stdio.h>
 
 #define PROGLEN 10000
@@ -7,17 +9,20 @@
 char buffer[BUFSIZE];
 char *bufp;
 
+// We're implementing some functions in <string.h> to reduce program size
 void readfile (FILE *fp, char *c);
 int findLoopEnd (char *prog);
 void copy (char *dst, char *src, int len);
 void substring (char *dst, char *src, int beg, int end);
 void parse (char *prog);
 
+// Read a file from top to bottom, including whitespace
 void readfile (FILE *fp, char *c)
 {
     while (fscanf(fp, "%c", c) == 1) c++;
 }
 
+// Find the end of a brainf**k loop, namely the ']' character
 int findLoopEnd (char *prog)
 {
     for (int i = 0; prog[i] != '\0'; i++) {
@@ -34,12 +39,14 @@ int findLoopEnd (char *prog)
     return -1;
 }
 
+// This is basically memcpy
 void copy (char *dst, char *src, int len)
 {
     for (int i = 0; (i < len) && src[i]; i++)
         dst[i] = src[i];
 }
 
+// Get a substring from 'beg' to 'end' in string 'src'
 void substring (char *dst, char *src, int beg, int end)
 {
     int len = end - beg;
@@ -47,6 +54,7 @@ void substring (char *dst, char *src, int beg, int end)
     dst[len] = '\0';
 }
 
+// Parse and run a brainf**k program
 void parse (char *prog)
 {
     for (int i = 0; prog[i] != '\0'; i++) {
