@@ -71,7 +71,7 @@ void parse (char *prog)
 
             while(*bufp != 0) parse(subprog);
 
-            i += findLoopEnd(prog + i + 1);
+            i += loopEnd;
         }
     }
 }
