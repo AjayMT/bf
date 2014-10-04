@@ -32,9 +32,7 @@ int findLoopEnd (char *prog)
             continue;
         }
 
-        if (prog[i] == ']') {
-            return i;
-        }
+        if (prog[i] == ']') return i;
     }
 
     return -1;
