@@ -31,12 +31,12 @@ int findLoopEnd (char *prog)
             i = findLoopEnd(prog + i + 1) + i + 1;
             continue;
         }
-        
+
         if (prog[i] == ']') {
             return i;
         }
     }
-    
+
     return -1;
 }
 
@@ -65,14 +65,14 @@ void parse (char *prog)
         if (prog[i] == '-') (*bufp)--;
         if (prog[i] == '.') putchar(*bufp);
         if (prog[i] == ',') *bufp = getchar();
-        
+
         if (prog[i] == '[') {
             char subprog[PROGLEN];
             int loopEnd = findLoopEnd(prog + i + 1);
             substring(subprog, prog, i + 1, loopEnd + i + 1);
-            
+
             while(*bufp != 0) parse(subprog);
-            
+
             i += findLoopEnd(prog + i + 1);
         }
     }
@@ -81,14 +81,14 @@ void parse (char *prog)
 int main (int argc, char const *argv[])
 {
     bufp = buffer;
-    
+
     char program[PROGLEN];
-    
+
     FILE *progfile = fopen(argv[1], "r");
     readfile(progfile, program);
     fclose(progfile);
-    
+
     parse(program);
-    
+
     return 0;
 }
